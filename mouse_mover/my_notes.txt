@@ -1,0 +1,59 @@
+mouse controller deneme kodu 
+from src.mouse_controller import MouseController
+import time
+
+mc = MouseController()
+
+print("Ekran boyutu:", mc.get_monitor_size())
+print("Mouse konumu:", mc.get_mouse_position())
+
+print("3 saniye sonra kare çizilecek...")
+time.sleep(3)
+
+mc.move_mouse()
+print("Yeni mouse konumu:", mc.get_mouse_position())
+
+
+"""
+Tek bir kuralla özetleyeyim, yarın bunu hatırlarsan yeter:
+
+self.x = "bu nesneye ait, sonra da kullanacağım"
+x = "sadece bu fonksiyonun içinde, geçici"
+
+def get_mouse_position(self):
+    x, y = pyautogui.position()  # ← geçici, x ve y burada kullanılıp gidiyor
+    return x, y                   # ← self.x değil, çünkü bir daha lazım değil
+
+def __init__(self):
+    self.up_down = 10   # ← self var çünkü scroll_mouse'da TEKRAR kullanılacak
+"""
+
+📚 Neler Öğrendik?
+Python & OOP
+
+Sınıf yapısı (class) ve __init__ ile nesne başlatma
+Sorumlulukları ayırma: MouseController sadece fare işleri, MouseMoverUI sadece arayüz
+
+Tkinter
+
+grid() ile layout yönetimi
+Button, Checkbutton, Label, Entry widget'ları
+BooleanVar ile checkbox durumu takibi
+Widget renklerini runtime'da değiştirme (.config(bg=...))
+
+Threading
+
+threading.Thread ile arka planda döngü çalıştırma
+daemon=True ile pencere kapanınca thread'i otomatik sonlandırma
+_running flag'i ile thread'i güvenli şekilde durdurma
+
+pyautogui
+
+move(), click(), scroll(), hscroll() kullanımı
+duration parametresiyle akıcı fare hareketi
+
+Genel
+
+Döngüsel import hatası ve çözümü
+.bat dosyasıyla bağımlılık kontrolü ve otomatik kurulum
+Paket yapısı (src/ klasörü, __init__.py, relative import)
